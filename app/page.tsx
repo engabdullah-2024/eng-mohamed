@@ -1,103 +1,121 @@
+// app/page.tsx
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { Mail, Github, ArrowRight, BadgeCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+
+/**
+ * Modern hero section for a young, talented dev.
+ * Tech: Next.js (App Router), TypeScript, Tailwind, shadcn/ui, Framer Motion
+ * Replace /mohamed.jpg with an actual image in your public/ folder
+ */
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+  },
+};
+
+const item = {
+  hidden: { y: 14, opacity: 0 },
+  show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 240, damping: 22 } },
+};
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="min-h-[100dvh] bg-gradient-to-b from-background to-muted/30">
+      <section className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-8 px-6 py-20 md:grid-cols-2 md:gap-12 lg:py-28">
+        {/* Left: Copy */}
+        <motion.div
+          className="flex flex-col justify-center"
+          initial="hidden"
+          animate="show"
+          variants={container}
+        >
+          <motion.div variants={item}>
+            <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium text-muted-foreground">
+              <BadgeCheck className="h-3.5 w-3.5" />
+              Junior Developer • Next.js & TS
+            </span>
+          </motion.div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.h1
+            variants={item}
+            className="mt-5 text-4xl font-semibold leading-tight tracking-tight md:text-5xl lg:text-6xl"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Eng Mohamed Osman
+          </motion.h1>
+
+          <motion.p
+            variants={item}
+            className="mt-4 max-w-xl text-base leading-7 text-muted-foreground md:text-lg"
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+            Young, talented developer crafting clean interfaces and reliable web apps.
+            Focused on Next.js, TypeScript, and modern UI with shadcn and Tailwind.
+          </motion.p>
+
+          <motion.div variants={item} className="mt-7 flex flex-wrap items-center gap-3">
+            <Button size="lg" className="group">
+              Hire Me <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Button>
+            <Button size="lg" variant="outline">
+              Download CV
+            </Button>
+            <a
+              href="mailto:eng.mohamed@example.com"
+              className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm hover:bg-muted"
+            >
+              <Mail className="h-4 w-4" /> Contact
+            </a>
+            <a
+              href="https://github.com/your-github"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm hover:bg-muted"
+            >
+              <Github className="h-4 w-4" /> GitHub
+            </a>
+          </motion.div>
+
+          <motion.div variants={item} className="mt-8 flex max-w-xl flex-wrap gap-2 text-xs text-muted-foreground">
+            <span className="rounded-full bg-primary/10 px-3 py-1">Next.js</span>
+            <span className="rounded-full bg-primary/10 px-3 py-1">TypeScript</span>
+            <span className="rounded-full bg-primary/10 px-3 py-1">Tailwind CSS</span>
+            <span className="rounded-full bg-primary/10 px-3 py-1">shadcn/ui</span>
+            <span className="rounded-full bg-primary/10 px-3 py-1">Framer Motion</span>
+          </motion.div>
+        </motion.div>
+
+        {/* Right: Portrait card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: "spring", stiffness: 160, damping: 20, delay: 0.15 }}
+          className="relative"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <Card className="border-none bg-gradient-to-br from-muted to-background/60 shadow-xl">
+            <CardContent className="p-4 sm:p-6">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/mo.jpg" // Put an actual image into public/mohamed.jpg
+                  alt="Eng Mohamed Osman portrait"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+                {/* Decorative blobs */}
+                <div className="pointer-events-none absolute -left-10 -top-10 h-40 w-40 rounded-full bg-primary/20 blur-2xl" />
+                <div className="pointer-events-none absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-primary/20 blur-2xl" />
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </section>
+    </main>
   );
 }
