@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants, type Transition } from "framer-motion";
 import { Mail, Github, ArrowRight, BadgeCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,7 +13,7 @@ import { Card, CardContent } from "@/components/ui/card";
  * Replace /mohamed.jpg with an actual image in your public/ folder
  */
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -21,9 +21,20 @@ const container = {
   },
 };
 
-const item = {
+const item: Variants = {
   hidden: { y: 14, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 240, damping: 22 } },
+  show: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 240, damping: 22 },
+  },
+};
+
+const cardTransition: Transition = {
+  type: "spring",
+  stiffness: 160,
+  damping: 20,
+  delay: 0.15,
 };
 
 export default function Home() {
@@ -95,14 +106,14 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: "spring", stiffness: 160, damping: 20, delay: 0.15 }}
+          transition={cardTransition}
           className="relative"
         >
           <Card className="border-none bg-gradient-to-br from-muted to-background/60 shadow-xl">
             <CardContent className="p-4 sm:p-6">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl">
                 <Image
-                  src="/mo.jpg" // Put an actual image into public/mohamed.jpg
+                  src="/mo.jpg" // Put an actual image into public/mo.jpg
                   alt="Eng Mohamed Osman portrait"
                   fill
                   priority
